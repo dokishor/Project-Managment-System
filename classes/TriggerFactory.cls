@@ -14,8 +14,8 @@ public class TriggerFactory {
         return TriggerFactory.INSTANCE;
     }
 
-    public void handle(Schema.SobjectType objectType) {
-        if(!this.handlers.containsKey(objectType)){
+    public void handle(Schema.SObjectType objectType) {
+        if(!this.HANDLERS.containsKey(objectType)){
             throw new TriggerException('No Trigger Handler registered for Object Type: ' + objectType);
         }
         ITriggerHandler handler = (ITriggerHandler)this.HANDLERS.get(objectType).newInstance();

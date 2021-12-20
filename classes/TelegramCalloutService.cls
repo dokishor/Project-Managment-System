@@ -14,24 +14,18 @@ public class TelegramCalloutService {
         this.request = new HttpRequest();
     }
 
-    public void setHttpHeaders(Map<String, String> headers){
-        if(headers != null && headers.isEmpty()){
+
+    public void setHeaders(Map<String, String> headers){
+        if(headers != null && !headers.isEmpty()){
             this.headers.putAll(headers);
         }
-        for(String key : this.headers.keySet()){
-            this.request.setHeader(key, this.headers.get(key));
-        }
     }
-//    public void setHeaders(Map<String, String> headers){
-//        if(headers != null && !headers.isEmpty()){
-//            this.headers.putAll(headers);
-//        }
-//    }
 
 
     public void setBody(String body){
         this.request.setBody(body);
     }
+
 
     public HttpResponse getMe(){
         this.endpoint += '/getMe';

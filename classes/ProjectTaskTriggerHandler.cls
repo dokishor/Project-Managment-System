@@ -14,14 +14,16 @@ public class ProjectTaskTriggerHandler implements ITriggerHandler {
     public void beforeDelete(Map<Id, SObject> oldMap) {
     }
 
+
     public void afterInsert(Map<Id, SObject> newMap) {
-        // TelegrammCalloutService service = new TelegrammCalloutService();
-        // service.setHttpHeaders(null);
-        // service.getMe();
+        TelegramCalloutService service = new TelegramCalloutService();
+        service.setHeaders(null);
+        service.getMe();
+        service.sendMessage();
     }
 
     public void afterUpdate(Map<Id, SObject> newMap, Map<Id, SObject> oldMap) {
-        //send emails to the task owner and task assignee if aprropriate field is changed
+        //send emails to the task owner and task assignee if appropriate field is changed
         sendEmails((Map<Id, Project_Task__c>) newMap, (Map<Id, Project_Task__c>) oldMap);
     }
 
@@ -32,6 +34,7 @@ public class ProjectTaskTriggerHandler implements ITriggerHandler {
         for (Project_Task__c newTask : newMap.values()) {
 
             Boolean isStatusChanged = newTask.Status__c != oldMap.get(newTask.Id).Status__c; //TODO: check if status is changed
+
             Boolean isAssigneeChanged = newTask.Assignee__c != oldMap.get(newTask.Id).Assignee__c; //TODO: check if assignee is changed
 
             if (isStatusChanged) {
