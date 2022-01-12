@@ -1,4 +1,4 @@
-public class TriggerFactory {
+public with sharing class TriggerFactory {
 
     private final static TriggerFactory INSTANCE = new TriggerFactory();
     private final Map<SObjectType, System.Type> HANDLERS;
@@ -6,10 +6,10 @@ public class TriggerFactory {
     private TriggerFactory() {
         this.HANDLERS = new Map<SObjectType, System.Type>
         {
-            Project_Task__c.SObjectType => ProjectTaskTriggerHandler.class
+                Project_Task__c.SObjectType => ProjectTaskTriggerHandler.class
         };
     }
-    
+
     public static TriggerFactory getInstance() {
         return TriggerFactory.INSTANCE;
     }
@@ -21,8 +21,8 @@ public class TriggerFactory {
         ITriggerHandler handler = (ITriggerHandler)this.HANDLERS.get(objectType).newInstance();
         execute(handler);
     }
-    
-    private static void execute(ITriggerHandler handler){
+
+    private void execute(ITriggerHandler handler){
         if(Trigger.isBefore){
             if(Trigger.isInsert){
                 handler.beforeInsert(Trigger.new);
@@ -42,7 +42,7 @@ public class TriggerFactory {
                 handler.afterUpdate(Trigger.newMap, Trigger.oldMap);
             }
             if(Trigger.isDelete){
-                handler.afterDelete(Trigger.oldMap); 
+                handler.afterDelete(Trigger.oldMap);
             }
         }
     }
