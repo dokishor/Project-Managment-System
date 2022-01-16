@@ -20,7 +20,6 @@ public class ProjectTaskTriggerHandler implements ITriggerHandler {
         return emails;
     }
 
-
     public void beforeInsert(List<SObject> newList) {
     }
 
@@ -31,10 +30,7 @@ public class ProjectTaskTriggerHandler implements ITriggerHandler {
     }
 
     public void afterInsert(Map<Id, SObject> newMap) {
-//        TelegramCalloutService service = new TelegramCalloutService();
-//        service.setHeaders(null);
-//        service.getMe();
-//        service.sendMessage();
+        taskName((Map<Id, Project_Task__c>) newMap);
     }
 
     public void afterUpdate(Map<Id, SObject> newMap, Map<Id, SObject> oldMap) {
@@ -76,9 +72,23 @@ public class ProjectTaskTriggerHandler implements ITriggerHandler {
         return newEmailMessage;
     }
 
-    public void afterDelete(Map<Id, SObject> oldMap) {
+    public void taskName(Map<Id, Project_Task__c> newMap) {
+        for (Project_Task__c projectTask_i : newMap.values()) {
+            sendRequestToBot(projectTask_i.Name);
+
+        }
     }
 
+    @Future(Callout= true)
+    public static void sendRequestToBot(String taskName) {
+        TelegrammCalloutService service = new TelegrammCalloutService();
+        service.setMessageBody('604844518', 'New task is assigned to you: ' + taskName);
+        service.setHeaders(null);
+        service.sendMessage();
+    }
+
+    public void afterDelete(Map<Id, SObject> oldMap) {
+    }
     public void afterUndelete(Map<Id, SObject> oldMap) {
     }
 
