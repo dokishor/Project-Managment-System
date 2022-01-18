@@ -74,18 +74,20 @@ public class ProjectTaskTriggerHandler implements ITriggerHandler {
 
     public void taskName(Map<Id, Project_Task__c> newMap) {
         for (Project_Task__c projectTask_i : newMap.values()) {
-            sendRequestToBot(projectTask_i.Name);
+            sendRequestToBot(projectTask_i.Name, projectTask_i.Subject__c);
 
         }
     }
 
+
     @Future(Callout= true)
-    public static void sendRequestToBot(String taskName) {
+    public static void sendRequestToBot(String taskName, String taskSubject) {
         TelegrammCalloutService service = new TelegrammCalloutService();
-        service.setMessageBody('604844518', 'New task is assigned to you: ' + taskName);
+        service.setMessageBody('604844518', 'New task is assigned to you: ' + taskName + ' --> ' + taskSubject);
         service.setHeaders(null);
         service.sendMessage();
     }
+
 
     public void afterDelete(Map<Id, SObject> oldMap) {
     }

@@ -10,54 +10,55 @@ public class TelegrammCalloutService {
 
     private String endpoint = TELEGRAM_API_ENDPOINT + API_KEY;
 
-    public TelegrammCalloutService(){
+    public TelegrammCalloutService() {
         this.request = new HttpRequest();
     }
 
-    public void setHeaders(Map<String, String> headers){
-        if(headers != null && !headers.isEmpty()){
+    public void setHeaders(Map<String, String> headers) {
+        if (headers != null && !headers.isEmpty()) {
             this.headers.putAll(headers);
         }
     }
 
-    public void setMessageBody(String chatId, String text){
-        String message= 'chat_id=' + chatId + '&text=' + text;
+    public void setMessageBody(String chatId, String text) {
+        String message = 'chat_id=' + chatId + '&text=' + text;
         setBody(message);
     }
 
-    public void setBody(String body){
+    public void setBody(String body) {
         this.request.setBody(body);
 
     }
 
-    public HttpResponse getMe(){
+    public HttpResponse getMe() {
         this.endpoint += '/getMe';
         this.request.setEndpoint(this.endpoint);
         this.request.setMethod('GET');
         return this.sendRequest();
     }
 
-    public HttpResponse sendMessage(){
+    public HttpResponse sendMessage() {
         this.endpoint += '/sendMessage';
         this.request.setEndpoint(this.endpoint);
         this.request.setMethod('POST');
         return sendRequest();
     }
 
-    public HttpResponse getUpdates(){
+    public HttpResponse getUpdates() {
         this.endpoint += '/getUpdates';
         this.request.setEndpoint(this.endpoint);
         this.request.setMethod('GET');
         return sendRequest();
     }
 
-    private HttpResponse sendRequest(){
+    private HttpResponse sendRequest() {
         Http http = new Http();
         System.debug('response.getBody(): ' + this.request.getBody());
         this.response = http.send(this.request);
         return this.response;
     }
 
-    private void handleResponse(){}
-}
+    private void handleResponse() {
 
+    }
+}
