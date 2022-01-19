@@ -27,7 +27,6 @@ public class TelegrammCalloutService {
 
     public void setBody(String body) {
         this.request.setBody(body);
-
     }
 
     public HttpResponse getMe() {
