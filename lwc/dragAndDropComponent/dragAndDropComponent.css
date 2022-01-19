@@ -1,43 +1,62 @@
+.slds-text-heading_large{
+width: 200px;
+}
+
+.btn{
+
+    margin-left: 30px;
+}
+
 .c-container {
-    border: 1px solid #d8dde6;
-    margin: 10px 0 20px 0;
+    border: 1px solid #fdfdfd;
+    margin: 10px 0 10px 0;
 }
+
 .custom-box {
-    background-color: #f4f6f9;
+    background-color: #ffffff;
     padding: 1rem;
-    border: 1px solid #d8dde6;
+    border: 1px solid #d2d7dd;
 }
+
 .drag {
     border-style: solid dotted;
     opacity: 0.20;
 }
+
 .over{
     border-style: solid dotted;
     border-color: green;
 }
+
 .wrap{
-    padding-bottom: 100px;
+    padding-bottom: 50px;
+    width: 280px;
 }
+
 .cont{
     display: flex;
 }
+
 .info_left{
     display: flex;
-    width: 200px;
-    background-color: #f4f6f9;
+    width: auto;
+    background-color: #ffffff;
+    margin-left: 10px;
+
 }
 .info_left h1{
-    font-size: 20px;
-    margin-left: 10px;
+    font-size: 15px;
+    margin-left: 20px;
     align-self: center;
 }
+
 .card{
     border-radius: 5px;
     border: 1px solid #d8dde6;
     box-shadow: 1px 1px 3px 1px rgb(175, 175, 175);
     display: flex;
-    height: 100px;
+    height: 50px;
     background-color: #f4f6f9;
     align-items: center;
-    padding-left: 50px;
+    padding-left: 10px;
 }

@@ -1,7 +1,7 @@
 <template>
     <lightning-layout vertical-align="stretch" multiple-rows="true" class="x-large">
         <lightning-layout-item flexibility="auto" padding="around-small" class="custom-box">
-            <h1 class="slds-text-heading_large">New Task</h1>
+            <h3 class="slds-text-heading_large">New Task</h3>
             <div id="newTask" class="wrap" data-role="drop-target" ondrop={handleDrop} ondragenter={handleDragEnter}
                  ondragover={handleDragOver} ondragleave={handleDragLeave}>
                 <template if:true={taskNewList}>
@@ -14,11 +14,11 @@
                                     <span class="slds-icon_container slds-icon-standard-account info_left"
                                           title="Description of icon when needed">
                                         <lightning-icon icon-name="custom:custom18" alternative-text="Approved"
-                                                        title="Approved"></lightning-icon>
+                                                        title="Approved">
+                                        </lightning-icon>
                                         <h1>{data.Name}</h1>
                                     </span>
                                 </div>
-
                                 <lightning-button class="btn" label="Delete" icon-name="utility:delete"
                                                   disabled={isDeleteButtonDisabled} variant="destructive" onclick={handleClick}>
                                 </lightning-button>
@@ -31,7 +31,7 @@
         </lightning-layout-item>
 
         <lightning-layout-item flexibility="auto" padding="around-small" class="custom-box">
-            <h1 class="slds-text-heading_large">In Progress Task</h1>
+            <h3 class="slds-text-heading_large">In Progress Task</h3>
             <div id="InProgress" class="wrap" data-role="drop-target" ondrop={handleDrop} ondragenter={handleDragEnter}
                  ondragover={handleDragOver} ondragleave={handleDragLeave}>
                 <template if:true={taskInProgressList}>
@@ -48,7 +48,6 @@
                                         <h1>{data.Name}</h1>
                                     </span>
                                 </div>
-
                                 <lightning-button class="btn" label="Delete" icon-name="utility:delete"
                                                   disabled={isDeleteButtonDisabled} variant="destructive" onclick={handleClick}>
                                 </lightning-button>
@@ -59,8 +58,9 @@
                 </template>
             </div>
         </lightning-layout-item>
+
         <lightning-layout-item flexibility="auto" padding="around-small" class="custom-box">
-            <h1 class="slds-text-heading_large">Completed Task</h1>
+            <h3 class="slds-text-heading_large">Completed Task</h3>
             <div id="completed" class="wrap" data-role="drop-target" ondrop={handleDrop} ondragenter={handleDragEnter}
                  ondragover={handleDragOver} ondragleave={handleDragLeave}>
                 <template if:true={taskCompletedList}>
@@ -78,7 +78,6 @@
                                             <h1>{data.Name}</h1>
                                         </span>
                                 </div>
-
                                 <lightning-button class="btn" label="Delete" icon-name="utility:delete"
                                                   disabled={isDeleteButtonDisabled} variant="destructive" onclick={handleClick}>
                                 </lightning-button>

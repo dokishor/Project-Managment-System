@@ -2,7 +2,6 @@ import { LightningElement, track, wire, api } from 'lwc';
 import taskData from '@salesforce/apex/DragAndDropComponentHandler.getAllTask';
 import updateTask from '@salesforce/apex/DragAndDropComponentHandler.updateTask';
 import deleteTask from '@salesforce/apex/DragAndDropComponentHandler.deleteTask';
-//import sendMails from '@salesforce/apex/SendMails.sendEnrollmentForm';
 
 export default class DragAndDropComponent extends LightningElement {
     @api recordId;
@@ -39,14 +38,13 @@ export default class DragAndDropComponent extends LightningElement {
         });
     }
 
-    handleClick(event){ //button delete;
+    handleClick(event){ 
         this.deleteTaskStatus(this.dropTaskId);
     }
 
     taskDragStart(event){
         const taskId = event.target.id.substr(0,18);
         console.log(taskId);
-        //window.alert(taskId);
         this.dropTaskId = taskId;
         let draggableElement = this.template.querySelector('[data-id="' + taskId + '"]');
         draggableElement.classList.add('drag');
@@ -56,7 +54,6 @@ export default class DragAndDropComponent extends LightningElement {
 
     taskDragEnd(event){
         const taskId = event.target.id.substr(0,18);
-        //window.alert(taskId);
         let draggableElement = this.template.querySelector('[data-id="' + taskId + '"]');
         draggableElement.classList.remove('drag');
     }
@@ -72,7 +69,6 @@ export default class DragAndDropComponent extends LightningElement {
         } if(columnUsed.includes('completed')){
             taskNewStatus = 'Done';
         }
-        //window.alert(columnUsed + ' & '+ taskNewStatus);
         this.updateTaskStatus(this.dropTaskId, taskNewStatus);
         let draggableElement = this.template.querySelector('[data-role="drop-target"]');
         draggableElement.classList.remove('over');
@@ -98,9 +94,6 @@ export default class DragAndDropComponent extends LightningElement {
         updateTask({newTaskId: taskId, newStatus: taskNewStatus}).then(result =>{
             this.getTaskData();
         });
-//        sendMails({name: 'Demo2', status: 'in Progress'}).then(result => {
-//            console.log('+++ DV result >>> ', result);
-//        });
     }
 
     cancel(event) {
